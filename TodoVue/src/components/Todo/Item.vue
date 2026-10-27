@@ -1,41 +1,41 @@
 <script setup>
-import { ref, nextTick } from 'vue'
+import { ref, nextTick } from "vue";
 
 const props = defineProps({
   todo: {
     type: Object,
-    required: true
-  }
-})
-const emit = defineEmits(['ubah', 'hapus', 'edit'])
-const sedangEdit = ref(false)
-const teksEdit = ref('')
-const inputEditRef = ref(null)
+    required: true,
+  },
+});
+const emit = defineEmits(["ubah", "hapus", "edit"]);
+const sedangEdit = ref(false);
+const teksEdit = ref("");
+const inputEditRef = ref(null);
 function mulaiEdit() {
-  sedangEdit.value = true
-  teksEdit.value = props.todo.title
+  sedangEdit.value = true;
+  teksEdit.value = props.todo.title;
   nextTick(() => {
-    inputEditRef.value?.focus()
-  })
+    inputEditRef.value?.focus();
+  });
 }
 function simpanEdit() {
-  if (!sedangEdit.value) return
+  if (!sedangEdit.value) return;
 
-  const teksBersih = teksEdit.value.trim()
+  const teksBersih = teksEdit.value.trim();
   if (!teksBersih) {
-    batalEdit()
-    return
+    batalEdit();
+    return;
   }
-  emit('edit', {
+  emit("edit", {
     id: props.todo.id,
-    teksBaru: teksBersih
-  })
+    teksBaru: teksBersih,
+  });
 
-  sedangEdit.value = false
+  sedangEdit.value = false;
 }
 function batalEdit() {
-  sedangEdit.value = false
-  teksEdit.value = props.todo.title
+  sedangEdit.value = false;
+  teksEdit.value = props.todo.title;
 }
 </script>
 
@@ -47,13 +47,12 @@ function batalEdit() {
         :checked="todo.completed"
         @change="emit('ubah', todo.id)"
       />
-      
+
       <span class="text" @dblclick="mulaiEdit" title="Klik 2x untuk edit tugas">
         {{ todo.title }}
       </span>
     </label>
 
-    
     <div v-else class="edit-wrapper">
       <input
         ref="inputEditRef"
@@ -66,7 +65,11 @@ function batalEdit() {
       />
     </div>
 
-    <button v-if="!sedangEdit" class="btn-delete" @click="emit('hapus', todo.id)">
+    <button
+      v-if="!sedangEdit"
+      class="btn-delete"
+      @click="emit('hapus', todo.id)"
+    >
       Hapus
     </button>
   </li>

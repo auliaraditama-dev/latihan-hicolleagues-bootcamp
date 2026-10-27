@@ -1,44 +1,46 @@
 <script setup>
-import { computed } from 'vue'
+import { computed } from "vue";
 
 const props = defineProps({
   sisaTugas: {
     type: Number,
-    required: true
+    required: true,
   },
   totalTugas: {
     type: Number,
-    required: true
-  }
-})
+    required: true,
+  },
+});
 const selesai = computed(() => {
-  return props.totalTugas - props.sisaTugas
-})
+  return props.totalTugas - props.sisaTugas;
+});
 const persentase = computed(() => {
-  if (props.totalTugas === 0) return 0
-  return Math.round((selesai.value / props.totalTugas) * 100)
-})
+  if (props.totalTugas === 0) return 0;
+  return Math.round((selesai.value / props.totalTugas) * 100);
+});
 </script>
 
 <template>
   <div class="stats-wrapper">
-    
     <div class="stats-card">
-      <span>Total: <strong>{{ totalTugas }}</strong></span>
-      <span>Selesai: <strong>{{ selesai }}</strong></span>
-      <span>Sisa: <strong class="badge">{{ sisaTugas }}</strong></span>
+      <span
+        >Total: <strong>{{ totalTugas }}</strong></span
+      >
+      <span
+        >Selesai: <strong>{{ selesai }}</strong></span
+      >
+      <span
+        >Sisa: <strong class="badge">{{ sisaTugas }}</strong></span
+      >
     </div>
 
-    
     <div class="progress-section" v-if="totalTugas > 0">
       <div class="progress-label">
         <span>Progress:</span>
         <span class="progress-value">{{ persentase }}%</span>
       </div>
 
-      
       <div class="progress-track">
-        
         <div
           class="progress-fill"
           :class="{ 'is-completed': persentase === 100 }"
@@ -73,7 +75,6 @@ const persentase = computed(() => {
   font-size: 12px;
 }
 
-
 .progress-section {
   margin-top: 12px;
 }
@@ -97,11 +98,12 @@ const persentase = computed(() => {
 
 .progress-fill {
   height: 100%;
-  background-color: #7c3aed; 
+  background-color: #7c3aed;
   border-radius: 9999px;
-  transition: width 0.3s ease, background-color 0.3s ease;
+  transition:
+    width 0.3s ease,
+    background-color 0.3s ease;
 }
-
 
 .progress-fill.is-completed {
   background-color: #10b981;

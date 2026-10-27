@@ -2,17 +2,17 @@
 defineProps({
   filterAktif: {
     type: String,
-    required: true
-  }
-})
+    required: true,
+  },
+});
 
-const emit = defineEmits(['gantiFilter'])
+const emit = defineEmits(["gantiFilter"]);
 
 const opsiFilter = [
-  { label: 'Semua', value: 'semua' },
-  { label: 'Aktif', value: 'aktif' },
-  { label: 'Selesai', value: 'selesai' }
-]
+  { label: "Semua", value: "semua" },
+  { label: "Aktif", value: "aktif" },
+  { label: "Selesai", value: "selesai" },
+];
 </script>
 
 <template>

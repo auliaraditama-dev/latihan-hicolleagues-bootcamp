@@ -1,23 +1,23 @@
 <script setup>
-import { ref } from 'vue'
+import { ref } from "vue";
 
-const emit = defineEmits(['tambah'])
-const judul = ref('')
-const pesanError = ref('')
+const emit = defineEmits(["tambah"]);
+const judul = ref("");
+const pesanError = ref("");
 
 function handleSubmit() {
-  const teksBersih = judul.value.trim()
+  const teksBersih = judul.value.trim();
   if (!teksBersih) {
-    pesanError.value = 'Tugas tidak boleh kosong, ya!'
-    return
+    pesanError.value = "Tugas tidak boleh kosong, ya!";
+    return;
   }
-  emit('tambah', teksBersih)
-  judul.value = ''
-  pesanError.value = ''
+  emit("tambah", teksBersih);
+  judul.value = "";
+  pesanError.value = "";
 }
 function handleInput() {
   if (pesanError.value) {
-    pesanError.value = ''
+    pesanError.value = "";
   }
 }
 </script>
@@ -36,7 +36,6 @@ function handleInput() {
       <button type="submit" class="btn-add">Tambah</button>
     </form>
 
-    
     <p v-if="pesanError" class="error-msg">⚠️ {{ pesanError }}</p>
   </div>
 </template>
@@ -58,13 +57,14 @@ function handleInput() {
   border-radius: 8px;
   font-size: 14px;
   outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .input-box:focus {
   border-color: #7c3aed;
 }
-
 
 .input-box.input-error {
   border-color: #ef4444;
@@ -84,7 +84,6 @@ function handleInput() {
 .btn-add:hover {
   background-color: #6d28d9;
 }
-
 
 .error-msg {
   color: #dc2626;
